@@ -1,1 +1,2 @@
-# ds_practicum_i
+# Practicum I: Prosper Loan Analysis
+

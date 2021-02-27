@@ -6,9 +6,32 @@ Prosper is a Peer-to-Peer (P2P) lending platform that allows both individual and
   
 In the following study, I will be analyzing just over a million loans ranging from 2005 to present. The goal of the project is to predict which loans will provide the best investment opportunities using defaults as the target variable. Due to the binary nature of default status, this will be a classification exercise. The task included acquiring and joining together multiple datasets, performing Exploratory Data Analysis (EDA), cleaning the data, selecting features, and finally building and executing predictive models. 
 
-## Process
 
-### Libraries 
+## Data
+
+3 data sets were merged into one clean file for analysis:
+  1. Loans files
+        - 9 files, 22 columns, 1,329,028 rows, 277 MB
+        - Primary data set consisting of several loan files. 
+        - Key data points include loan size, loan status, and borrower rate.
+        - These files were manually unzipped, then read as a dataframe using a for loop. 
+  2. Listings files
+        - 9 files, 448 columns, 2,090,506 rows, 8 GB
+        - Contains data about the loan at the time of listing on the site.
+        - Key data points include borrower income, credit rating, employment status, and job category.
+        - These details are crucial to the prediction of loan outcomes.
+  3. Master file
+        - 1 file, 88 columns, 50,717,253 rows, 34 GB
+        - While this file contains details at the loan and listing level, it alco contains line items for every monthly update.
+        - Because of this, the file was too much to process in full, and it was stripped down to just mapping fields to join Loans and Listings as well as key additional columns unique to this file. 
+        - Even when slimming down the file significantly, it still was too much for my machine to process using Pandas. 
+        - I used the Dask library to process the file, which allows for parallel computing of large files, but any updates still took a significant amount of time.
+
+### Merged File
+
+
+
+### Libraries
 
 Some basic Git commands are:
 ```
@@ -16,46 +39,34 @@ Some basic Git commands are:
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-%matplotlib inline
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
-import seaborn as sns
-import io
-import glob
-from IPython.display import display
-from sklearn.linear_model import LogisticRegression
-from datetime import datetime
-#from sklearn.preprocessing import LabelBinarizer
-from sklearn import preprocessing
-import statsmodels.api as sm
 from sklearn.feature_selection import RFE
 from sklearn.feature_selection import RFECV
 from sklearn.datasets import make_classification
-from sklearn.pipeline import make_pipeline
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import classification_report
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import roc_curve
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import recall_score
+from sklearn import pipeline
 from sklearn.model_selection import cross_val_score
-from sklearn.neighbors  import KNeighborsClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
+from sklearn.neighbors  import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.decomposition import PCA
+from sklearn.linear_model import LogisticRegression
+from sklearn import preprocessing
+import seaborn as sns
+import io
+import glob
+from IPython.display import display
+from datetime import datetime
+import statsmodels.api as sm
+import dask.dataframe as dd
+from dask.distributed import Client, progress
 import tpot
 from tpot import TPOTClassifier
 from sklearn.pipeline import Pipeline
+%matplotlib inline
 ```
-
-## Data
-
-The primary data set consists of several loan files. These were manually unzipped, then read as a dataframe using a for loop. 
-
-2 additional datasets were merged: 
-  1. Listings file
 
 ### Merging
 

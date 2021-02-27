@@ -242,16 +242,37 @@ Using this methodology, the accuracy score to beat was 73%.
 
 ![image](https://user-images.githubusercontent.com/1417344/109396485-10d76300-78ef-11eb-973a-fd7e7ec3b1e0.png)
 
+```
+#Build KNN Model with 38 clusters
+knn = KNeighborsClassifier(n_neighbors=38)
+knn.fit(X_pca_train, y_train.values.ravel())
+```
+78.70%
+
 ### Decision Tree
+
+```
+#Create initial Decision Tree model
+dtree = DecisionTreeClassifier()
+dtree.fit(X_pca_train, y_train)
+```
+68.49%
 
 ### Random Forest
 
+```
+# Instantiate model with 100 decision trees
+rf = RandomForestClassifier(n_estimators = 100, random_state = 42, class_weight = 'balanced')
+rf.fit(X_pca_train, y_train.values.ravel())
+```
+67.28%
+
 ### TPOT
 
-
+Initial performance appeared very strong at 78.77% accuracy using a suggested variation of Decision Tree. However, when building the model, it appeared that the model was selecting almost everything as Completed, which does not help much in terms of identifying defaults.
 ![image](https://user-images.githubusercontent.com/1417344/109396644-c99da200-78ef-11eb-9b28-87a6d795f3e8.png)
 
-
+The next iteration used a balanced class weight, but the accuracy was much lower at 55.72%. It did a much better job of identifying defaults, but at the expense of overall accuracy.
 ![image](https://user-images.githubusercontent.com/1417344/109396668-eb972480-78ef-11eb-8b46-fc585befa57c.png)
 
 ![image](https://user-images.githubusercontent.com/1417344/109396671-f356c900-78ef-11eb-8e8f-d48b0618bd36.png)
@@ -261,6 +282,8 @@ Using this methodology, the accuracy score to beat was 73%.
 
 
 ## Conclusion
+
+
 
 ## References
 https://docs.dask.org/en/latest/dataframe.html

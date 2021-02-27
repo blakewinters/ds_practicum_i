@@ -6,11 +6,60 @@ Prosper is a Peer-to-Peer (P2P) lending platform that allows both individual and
   
 In the following study, I will be analyzing just over a million loans ranging from 2005 to present. The goal of the project is to predict which loans will provide the best investment opportunities using defaults as the target variable. Due to the binary nature of default status, this will be a classification exercise. The task included acquiring and joining together multiple datasets, performing Exploratory Data Analysis (EDA), cleaning the data, selecting features, and finally building and executing predictive models. 
 
+## Process
 
+### Libraries 
 
-
+Some basic Git commands are:
+```
+#Import Libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn import metrics
+from sklearn.model_selection import train_test_split
+import seaborn as sns
+import io
+import glob
+from IPython.display import display
+from sklearn.linear_model import LogisticRegression
+from datetime import datetime
+#from sklearn.preprocessing import LabelBinarizer
+from sklearn import preprocessing
+import statsmodels.api as sm
+from sklearn.feature_selection import RFE
+from sklearn.feature_selection import RFECV
+from sklearn.datasets import make_classification
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_curve
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import recall_score
+from sklearn.model_selection import cross_val_score
+from sklearn.neighbors  import KNeighborsClassifier
+from sklearn.model_selection import RepeatedStratifiedKFold
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.decomposition import PCA
+import tpot
+from tpot import TPOTClassifier
+from sklearn.pipeline import Pipeline
+```
 
 ## Data
+
+The primary data set consists of several loan files. These were manually unzipped, then read as a dataframe using a for loop. 
+
+2 additional datasets were merged: 
+  1. Listings file
+
+### Merging
+
+### Cleaning
 
 ## EDA
 

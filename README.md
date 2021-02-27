@@ -218,7 +218,9 @@ X_pca_test = pca.transform(X_test)
 
 ## Models
 
-### Goal Accuracy Score
+A variety of Classification models were tested in order to predict whether a loan would Default (1) or would Complete (0). 
+
+### Ideal Goal Accuracy Score
 
 A goal accuracy was calculated based on how soon investments would break even given that the nth loan will eventually default.
 
@@ -226,8 +228,6 @@ I used median rates of return on completed loans as well as median payments rece
 ```
 #Assuming X amount of loans complete and the X+1 loan defaults, calculate ideal return:
 #completed_return * X - defaulted_return * 1 = 0
-#2408.0 * X = 6394.0
-#X = 2.66
 #2.66 completed loans needed for every 1 defaulted loan
 
 acc_ideal_mod = round((def_loans * -1 / comp_loans) / (def_loans * -1 / comp_loans + 1) ,2)
@@ -235,6 +235,29 @@ acc_ideal_mod = round((def_loans * -1 / comp_loans) / (def_loans * -1 / comp_loa
 print("Ideal accuracy modified: ", acc_ideal_mod)
 ```
 Using this methodology, the accuracy score to beat was 73%.
+
+### Logistic Regression
+
+### KNN
+
+![image](https://user-images.githubusercontent.com/1417344/109396485-10d76300-78ef-11eb-973a-fd7e7ec3b1e0.png)
+
+### Decision Tree
+
+### Random Forest
+
+### TPOT
+
+
+![image](https://user-images.githubusercontent.com/1417344/109396644-c99da200-78ef-11eb-9b28-87a6d795f3e8.png)
+
+
+![image](https://user-images.githubusercontent.com/1417344/109396668-eb972480-78ef-11eb-8b46-fc585befa57c.png)
+
+![image](https://user-images.githubusercontent.com/1417344/109396671-f356c900-78ef-11eb-8e8f-d48b0618bd36.png)
+
+
+### Model Performance
 
 
 ## Conclusion

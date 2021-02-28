@@ -238,6 +238,9 @@ Using this methodology, the accuracy score to beat was 73%.
 
 ### Logistic Regression
 
+![image](https://user-images.githubusercontent.com/1417344/109398427-230ace80-78fa-11eb-87e3-0ec8c29c1c11.png)
+
+
 ### KNN
 
 ![image](https://user-images.githubusercontent.com/1417344/109396485-10d76300-78ef-11eb-973a-fd7e7ec3b1e0.png)

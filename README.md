@@ -240,6 +240,9 @@ Using this methodology, the accuracy score to beat was 73%.
 
 ![image](https://user-images.githubusercontent.com/1417344/109398427-230ace80-78fa-11eb-87e3-0ec8c29c1c11.png)
 
+The Logistic Regression model performed at 63.56% accuracy. Initially, the results were promising at around 78%, but due to the imbalanced nature of the data, it did not do a good job of predicting any defaults accurately. 
+
+After changing the class_weights to 'balanced', the model started classifying more defaults correctly, but performance dropped significantly. This trend held true for pretty much all future endeavors. 
 
 ### KNN
 
@@ -250,7 +253,7 @@ Using this methodology, the accuracy score to beat was 73%.
 knn = KNeighborsClassifier(n_neighbors=38)
 knn.fit(X_pca_train, y_train.values.ravel())
 ```
-78.70%
+The KNN algorithm performed very well at 78.70% accuracy. The 0.16 F1 score was not sufficient, but at least the model would lead to performance better than break-even at this point. 
 
 ### Decision Tree
 
@@ -259,7 +262,7 @@ knn.fit(X_pca_train, y_train.values.ravel())
 dtree = DecisionTreeClassifier()
 dtree.fit(X_pca_train, y_train)
 ```
-68.49%
+The decision tree performed at 68.49% with a 0.24 F1 score. 
 
 ### Random Forest
 
@@ -268,7 +271,7 @@ dtree.fit(X_pca_train, y_train)
 rf = RandomForestClassifier(n_estimators = 100, random_state = 42, class_weight = 'balanced')
 rf.fit(X_pca_train, y_train.values.ravel())
 ```
-67.28%
+Random Forest did not perform as well as previous models at 67.28% accuracy, but the 25% F1 Score was an improvement over some of the previous efforts.
 
 ### TPOT
 
@@ -283,8 +286,18 @@ The next iteration used a balanced class weight, but the accuracy was much lower
 
 ### Model Performance
 
+Pretty soon in the modeling process, I switched from using automatic class weights, which performed well in terms of accuracy but did not really predict any defaults, to balanced class weights, which had lower accuracy but did not simply predict all completed loans. 
+
+In addition to adjusting these weights, I tested the data feeding the models against scaled values, columns selected using RFE, and PCA values. The results of each test are below:
 
 ## Conclusion
+
+At the very least, some of my models performed better than break-even performance that was the criteria I set out to beat. However, I never got to a point where I could consistently detect defaults at a rate close to 50%. 
+
+In the future, I would like to try additional tactics such as SMOTE to continue correcting for the problem of imbalanced data. 
+
+As a first try utilizing AutoML functions through the TPOT library, this was a great experience which will help inform how AutoML can be used in the projects down the road. Still, what I found is more important than simply throwing all data into an AutoML process is to make sure the data is properly balanced and adjusted before doing any sort of heavy lifting in terms of processing. Especially on a relatively weak machine, wasting time running very computationally intensive algorithms is detrimental to finding a good solution quickly.
+
 
 
 

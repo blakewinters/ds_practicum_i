@@ -55,6 +55,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
 from sklearn import preprocessing
+import imblearn
 import seaborn as sns
 import io
 import glob
@@ -246,7 +247,7 @@ After changing the class_weights to 'balanced', the model started classifying mo
 
 ### KNN
 
-![image](https://user-images.githubusercontent.com/1417344/109396485-10d76300-78ef-11eb-973a-fd7e7ec3b1e0.png)
+
 
 ```
 #Build KNN Model with 38 clusters
@@ -254,6 +255,13 @@ knn = KNeighborsClassifier(n_neighbors=38)
 knn.fit(X_pca_train, y_train.values.ravel())
 ```
 The KNN algorithm performed very well at 78.70% accuracy. The 0.16 F1 score was not sufficient, but at least the model would lead to performance better than break-even at this point. 
+
+![image](https://user-images.githubusercontent.com/1417344/109396485-10d76300-78ef-11eb-973a-fd7e7ec3b1e0.png)
+
+Additional clusters kept performing better in terms of error rate. Almost everything after 18 does not provide much improvement, and it would do so at a processing time cost.
+
+Using 6 Clusters instead of 5 provides a huge boost in performance at 77.3% accuracy without sacrificing very much additional complexity or run-time.
+
 
 ### Decision Tree
 
@@ -327,3 +335,5 @@ https://stackabuse.com/k-nearest-neighbors-algorithm-in-python-and-scikit-learn/
 https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9
 
 https://stackabuse.com/decision-trees-in-python-with-scikit-learn/
+
+https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/

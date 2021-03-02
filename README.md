@@ -296,7 +296,22 @@ The next iteration used a balanced class weight, but the accuracy was much lower
 
 Pretty soon in the modeling process, I switched from using automatic class weights, which performed well in terms of accuracy but did not really predict any defaults, to balanced class weights, which had lower accuracy but did not simply predict all completed loans. 
 
-In addition to adjusting these weights, I tested the data feeding the models against scaled values, columns selected using RFE, and PCA values. The results of each test are below:
+In addition to adjusting these weights, I tested the data feeding the models against scaled values, columns selected using RFE, PCA, and SMOTE. The results of each test are below:
+
+![image](https://user-images.githubusercontent.com/1417344/109575250-abca6b80-7aae-11eb-936b-1672a1405f23.png)
+
+While the Accuracy metric shows that certain KNN, Random Forest, and TPOT (Accuracy) algorithms as the best performing around 78%, that does not show the picture. Looking at Recall, it becomes clear that the more highly accurate models are not actually predicting defaults at a high rate at all:
+
+![image](https://user-images.githubusercontent.com/1417344/109575463-18de0100-7aaf-11eb-95b7-721ab9eb8b03.png)
+
+Now, you can see that most of the KNN models as well as the Random Forest and Decision Tree models barely provide any Recall at all. Logistic Regression and TPOT (Balanced) both provide the highest Recall by far.
+
+Finally, I put together an ROI model using each of the outputs of the confusion matrices. This is based on all of the loans that were predicted to be completed, since those would receive investments in the real world if using one of these models. 
+
+![image](https://user-images.githubusercontent.com/1417344/109575746-a91c4600-7aaf-11eb-808c-6ca88980511b.png)
+
+These results show the Scaled Logistic Regression model, actually one of the earliest and simplest of the models I made, to be the winner in terms of financial performance at 11.77% ROI. These are based on median return values as opposed to the actual attributes of each predictions, so real-world performance would certainly vary.  
+
 
 ## Conclusion
 

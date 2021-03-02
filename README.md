@@ -284,9 +284,11 @@ Random Forest did not perform as well as previous models at 67.28% accuracy, but
 ### TPOT
 
 Initial performance appeared very strong at 78.77% accuracy using a suggested variation of Decision Tree. However, when building the model, it appeared that the model was selecting almost everything as Completed, which does not help much in terms of identifying defaults.
-![image](https://user-images.githubusercontent.com/1417344/109396644-c99da200-78ef-11eb-9b28-87a6d795f3e8.png)
+
+![image](https://user-images.githubusercontent.com/1417344/109576010-3364aa00-7ab0-11eb-8e26-3cfda66e3522.png)
 
 The next iteration used a balanced class weight, but the accuracy was much lower at 55.72%. It did a much better job of identifying defaults, but at the expense of overall accuracy.
+
 ![image](https://user-images.githubusercontent.com/1417344/109396668-eb972480-78ef-11eb-8b46-fc585befa57c.png)
 
 ![image](https://user-images.githubusercontent.com/1417344/109396671-f356c900-78ef-11eb-8e8f-d48b0618bd36.png)

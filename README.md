@@ -105,7 +105,7 @@ df_master.loc[((df_master['loan_status'] == 2) | (df_master['loan_status'] == 3)
 Various files previously coded as Boolean TRUE/FALSE were converted to binary 0/1 values. 
 ```
 #Convert fields from Boolean to int
-df_analysis['group_indicator'] = (df_analysis['group_indicator'] == 'TRUE').astype(int)
+df_analysis['is_homeowner'] = (df_analysis['is_homeowner'] == 'TRUE').astype(int)
 ```
 
 Quite a few columns had NA values, and those were adjusted in a variety of ways, including 0 for data such as delinquencies that were not positive, as well as median values for fields like monthly debt. 
